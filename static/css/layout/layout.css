@@ -1,0 +1,10 @@
+@layer layout {
+  .container {
+    width: 100%;
+  }
+
+  .m0auto {
+    margin: 0 auto;
+    width: 105rem;
+  }
+}
