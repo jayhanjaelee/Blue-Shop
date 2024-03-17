@@ -1,4 +1,4 @@
-@layer reset, typograph, layout, layout.header;
+@layer reset, typograph, layout, layout.header, layout.carousel;
 
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
@@ -7,3 +7,4 @@
 @import url(./typpograph.css);
 @import url(./layout/layout.css);
 @import url(./layout/header.css);
+@import url(./layout/carousel.css);
