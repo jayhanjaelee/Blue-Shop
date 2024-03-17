@@ -1,0 +1,13 @@
+@layer layout.footer {
+  footer {
+    width: 100%;
+    height: 6rem;
+    font-size: 1.2rem;
+    line-height: 3.0rem;
+    margin-top: 5rem;
+    padding: 1rem 0;
+    background-color: var(--lightgray);
+    color: var(--black33);
+    text-align: center;
+  }
+}

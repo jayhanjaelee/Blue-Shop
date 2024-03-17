@@ -1,4 +1,8 @@
 @layer layout {
+  body, html {
+    /* min-height: 148rem; */
+  }
+
   .container {
     width: 100%;
   }
