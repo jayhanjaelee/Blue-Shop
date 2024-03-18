@@ -1,0 +1,12 @@
+@layer utils {
+  .btn {
+    border: 1px solid var(--blue33); 
+    border-radius: 4px;
+  }
+
+  .btn--disabled {
+    cursor: unset;
+    color: var(--graycd);
+    border: 1px solid var(--graycd);
+  }
+}
