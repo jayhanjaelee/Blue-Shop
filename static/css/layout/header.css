@@ -99,8 +99,8 @@
       flex-flow: row nowrap;
       grid-template-columns: repeat(5, 1fr);
       height: 7rem;
-      font-weight: 450;
-      font-size: 1.8rem;
+      font-weight: 600;
+      font-size: 1.7rem;
       color: var(--black33);
       align-items: center;
 
@@ -114,6 +114,13 @@
     & .header-bottom__category-container {
       position: relative;
       cursor: pointer;
+
+      & svg {
+        position: absolute;
+        top: calc(50% - 1.6rem + 0.9rem);
+        left: calc(50% - 1.6rem - 4rem);
+        /* border: 1px solid gray; */
+      }
     }
 
     & .header-bottom__category-list {

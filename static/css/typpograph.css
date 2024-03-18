@@ -1,7 +1,7 @@
 @layer typograph {
   html {
     font-size: 62.5%;
-    font-family: 'Noto Sans', sans-serif;
+    font-family: "Noto Sans", "Nanum Gothic", sans-serif;
   }  
   body {
     font-size: 1.6rem;
