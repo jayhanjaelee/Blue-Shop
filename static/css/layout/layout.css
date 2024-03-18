@@ -1,6 +1,7 @@
 @layer layout {
   body, html {
     /* min-height: 148rem; */
+    /* height: 100vh; */
   }
 
   .container {
