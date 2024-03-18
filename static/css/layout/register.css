@@ -1,0 +1,104 @@
+@layer layout.register {
+  & .register-container {
+    width: 64rem;
+    margin: 0 auto;
+
+    & .register__header {
+      margin: 4rem 0 5rem;
+      font-size: 2.8rem;
+      text-align: center;
+    }
+
+    & .register__required {
+      display: block;
+      text-align: right;
+      font-size: 1.2rem;
+
+      &::after {
+        display: block;
+        content: "";
+        width: 100%;
+        margin-top: 1rem;
+        border-bottom: 2px solid black;
+      }
+    }
+
+    & .register__asterisk {
+      color: red;
+    }
+
+    & .register__form {
+      margin-top: 1rem;
+      padding: 1rem;
+
+      & .register__items {
+        & .register__item {
+          display: grid;
+          grid-template-columns: 14rem 33rem 12rem;
+          grid-template-rows: 6.8rem;
+          gap: 1rem;
+
+
+          & .register__title {
+            align-self: center;
+            font-size: 1.4rem;
+            font-weight: 600;
+            padding: 0 1rem;
+
+            & label {}
+          }
+
+          & input {
+            border: 1px solid var(--graycd);
+            border-radius: 4px;
+            height: 4.6rem;
+            align-self: center;
+            padding: 1rem;
+          }
+
+          & input,
+          & input::placeholder {
+            font-size: 1.4rem;
+          }
+
+          & input::placeholder {
+            color: var(--gray9b);
+          }
+
+          & input:active {
+            border: 1px solid var(--black33);
+          }
+
+          & button {
+            height: 4.4rem;
+            align-self: center;
+            font-size: 1.4rem;
+            font-weight: 600;
+          }
+
+          &:last-child {
+            border-bottom: 1px solid var(--black33);
+            padding-bottom: 2rem;
+          }
+        }
+      }
+
+      & .register__form-btn-container {
+        display: flex;
+        margin-top: 2rem;
+        justify-content: center;
+        align-items: center;
+
+        & .register__form-btn {
+          width: 24rem;
+          height: 5.3rem;
+          background-color: var(--blue33);
+          color: var(--white);
+          margin-top: 1rem; 
+          font-size: 1.6rem;
+          font-weight: 700;
+        }
+      }
+    } /* register form end */
+  }
+}

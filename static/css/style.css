@@ -1,6 +1,8 @@
-@layer reset, typograph;
-@layer layout, layout.header, layout.carousel, layout.new_products_section, layout.footer;
+@layer reset, typograph, utils;
+@layer layout;
+@layer layout.header, layout.carousel, layout.new_products_section, layout.footer;
 @layer layout.login;
+@layer layout.register;
 
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
@@ -8,13 +10,17 @@
 @import url(./vars.css);
 @import url(./reset.css);
 @import url(./typpograph.css);
+@import url(./utils.css);
 @import url(./layout/layout.css);
 
-/* index page */
+/* Index Page */
 @import url(./layout/header.css);
 @import url(./layout/carousel.css);
 @import url(./layout/new_products_section.css);
 @import url(./layout/footer.css);
 
-/* login page */
+/* Login Page */
 @import url(./layout/login.css);
+
+/* Register Page */
+@import url(./layout/register.css);
