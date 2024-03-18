@@ -4,6 +4,7 @@
 @layer layout.login;
 @layer layout.register;
 @layer layout.products;
+@layer layout.product;
 
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
@@ -28,3 +29,6 @@
 
 /* Products Page */
 @import url(./layout/products.css);
+
+/* Product Page */
+@import url(./layout/product.css);
