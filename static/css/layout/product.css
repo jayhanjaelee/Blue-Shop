@@ -8,10 +8,14 @@
     margin-top: 4rem !important;
 
     & .product-image-container {
-      border: 1px solid gray;
+      /* border: 1px solid gray; */
       width: 50%;
+      display: flex;
+      justify-content: center;
 
       & img {
+        border: .1rem solid var(--graycd);
+        border-radius: .3rem;
         width: 43rem;
         height: 55rem;
         object-fit: cover;
@@ -21,7 +25,7 @@
     & .product-info-container {
       width: 50%;
       height: 100%;
-      border: 1px solid gray;
+      /* border: 1px solid gray; */
 
       & .product-info__title {
         margin-bottom: 1rem;
@@ -42,19 +46,26 @@
       }
 
       & .product-info__form {
-        height: 45rem;
-        border: 1px solid gray;
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: flex-end;
-
         & .product-count-container {
-          margin-top: 2rem;
           display: flex;
-          /* justify-content: space-between; */
-          gap: 2rem;
+          flex-flow: row nowrap;
+          justify-content: flex-end;
           align-items: center;
-          margin-bottom: 3rem;
+          margin: 2rem 0 1rem;
+          padding-bottom: 2rem;
+          gap: 2rem;
+          border-bottom: 1px solid var(--graycd);
+
+          & label[for="product__count"] {}
+
+          & input#product_count {
+            width: 20%;
+            height: 5rem;
+            font-size: 1.8rem;
+            text-align: right;
+            padding: 0 1rem;
+            margin-right: .5rem;
+          }
         }
 
         & .product-info__price-description {
@@ -63,10 +74,11 @@
           justify-content: end;
           align-items: flex-end;
           margin-bottom: 2rem;
-          border-bottom: 1px solid gray;
+          /* border-bottom: 1px solid gray; */
 
           & .product-info__price-label {
             font-size: 1.4rem;
+            margin-right: 1rem;
           }
 
           & .product__price {
@@ -77,16 +89,6 @@
           }
         }
 
-        & label[for="product__count"] {}
-
-        & input#product_count {
-          width: 80%;
-          height: 5rem;
-          font-size: 1.8rem;
-          text-align: right;
-          padding: 0 1rem;
-        }
-
         & .product__buy-container {
           display: flex;
           flex-flow: row nowrap;
@@ -94,8 +96,8 @@
           align-items: center;
           gap: 1rem;
           height: 5rem;
-          border: 1px solid gray;
-          margin: 1rem 0;
+          /* border: 1px solid gray; */
+          margin: 1rem 0 0;
 
           & .product__favorite-btn {
             width: 5rem;

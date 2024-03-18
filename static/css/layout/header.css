@@ -129,7 +129,7 @@
       top: 7rem;
       left: 0;
       width: 20rem;
-      background-color: var(--white);
+      background-color: white;
     }
 
     & .header-bottom__category-item {
@@ -140,7 +140,7 @@
     }
 
     & .header-bottom__category-item:hover {
-      background-color: var(--lightgray);
+      background-color: var(--lightgray2);
     }
 
     & .header-bottom__category-item:last-child {
