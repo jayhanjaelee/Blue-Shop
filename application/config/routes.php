@@ -54,11 +54,17 @@ $route['default_controller'] = 'home';
 
 // Custom Routing
 $route['/'] = 'home';
-$route['register'] = 'register';
-$route['login'] = 'login';
-$route['products'] = 'products';
-$route['product'] = 'product';
-$route['product/(:num)'] = 'product/get/$1';
 
+$route['register'] = 'register';
+
+$route['login'] = 'login';
+
+$route['products'] = 'products';
+$route['products/(:num)'] = 'products/getProducts/$1';
+
+$route['product'] = 'product';
+$route['product/(:num)'] = 'product/getProduct/$1';
+
+// Default Routing
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -4,15 +4,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Product extends MY_Controller {
 
   public function __construct() {
-    $page = 'product';
-    parent::__construct($page);
+    $pageTitle = 'product';
+    parent::__construct($pageTitle);
   }
 
   public function index() {
     $this->render();
   }
 
-  public function get($id) {
+  public function getProduct($id) {
     $params = ['id' => $id];
     $this->render($params);
   }

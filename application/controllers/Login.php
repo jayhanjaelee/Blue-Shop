@@ -4,8 +4,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Login extends MY_Controller {
 
   public function __construct() {
-    $page = 'login';
-    parent::__construct($page);
+    $pageTitle = 'login';
+    parent::__construct($pageTitle);
   }
 
   public function index() {
