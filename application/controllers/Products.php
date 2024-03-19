@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Products extends MY_Controller {
 
   public function __construct() {
-    $pageTitle = 'products';
+    $pageTitle = 'Products';
     parent::__construct($pageTitle);
   }
 
