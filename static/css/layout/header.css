@@ -108,6 +108,11 @@
         text-align: center;
         width: 100%; height: 100%;
         line-height: 7rem;
+
+        & a {
+          display: inline-block;
+          width: inherit; height: inherit;
+        }
       }
     }
 
@@ -134,9 +139,15 @@
 
     & .header-bottom__category-item {
       display: none;
+      /* display: block; */
       color: var(--black33);
       border: 1px solid var(--graya9);
       border-bottom: 0;
+
+      & a {
+        display: inline-block;
+        width: 100%; height: 100%;
+      }
     }
 
     & .header-bottom__category-item:hover {
