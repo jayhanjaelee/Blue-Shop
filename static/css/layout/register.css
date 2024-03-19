@@ -25,6 +25,7 @@
 
     & .register__asterisk {
       color: red;
+      margin-right: .5rem;
     }
 
     & .register__form {
