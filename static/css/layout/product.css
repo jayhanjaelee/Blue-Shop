@@ -24,8 +24,10 @@
 
     & .product-info-container {
       width: 50%;
-      height: 100%;
-      /* border: 1px solid gray; */
+      height: 60%;
+      padding: 1rem 1.5rem;
+      border: 1px solid var(--graycd);
+      border-radius: .4rem;
 
       & .product-info__title {
         margin-bottom: 1rem;

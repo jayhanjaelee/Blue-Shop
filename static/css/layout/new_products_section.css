@@ -2,8 +2,7 @@
   .new-products-container { 
     width: 100%;
     height: 49.6rem;
-    /* padding-bottom: 10rem; */
-    /* margin-bottom: 100px; */
+    margin-bottom: 10rem !important;
 
     & .new-products-sub-container {
       display: grid;
