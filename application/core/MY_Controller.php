@@ -21,7 +21,6 @@ class MY_Controller extends CI_Controller {
   }
 
   private function _connectDB() {
-    $this->load->database();
     if ($this->db->initialize() === FALSE) {
       die('not connected');
     }
