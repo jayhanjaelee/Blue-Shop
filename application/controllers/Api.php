@@ -19,6 +19,7 @@ class Api extends RestController {
     $jsonArray = json_decode(file_get_contents('php://input'), true);
     $auth = new Auth($jsonArray);
 
+    // check password
     if (!$auth->check_password()) {
       return $this->response(array(
         'status' => 'failed',
@@ -26,6 +27,8 @@ class Api extends RestController {
       ), 400);
     }
 
+    // call register()
+    $jsonArray['password'] = $auth->hash_password();
     $this->user_model->register($jsonArray);
 
     return $this->response(array(
