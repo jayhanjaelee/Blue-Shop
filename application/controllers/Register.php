@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Register extends My_Controller {
+class Register extends BS_Controller {
 
   public function __construct() {
     $page = 'Register';

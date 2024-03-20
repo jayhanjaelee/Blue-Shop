@@ -14,16 +14,14 @@ class Api extends RestController {
   public function index() {
   }
 
-  public function user_post() {
-    // request body 읽는 부분
-    $jsonArray = json_decode(file_get_contents('php://input'), true);
-    $auth = new Auth($jsonArray);
+  public function register_post() {
+    $auth = $this->_get_user_input();
 
     // check password
     if (!$auth->check_password()) {
       return $this->response(array(
         'status' => 'failed',
-        'message' => '입력한 비밀번호가 서로 다릅니다.',
+        'message' => '비밀번호가 일치하지 않습니다.',
       ), 400);
     }
 
@@ -33,12 +31,23 @@ class Api extends RestController {
 
     return $this->response(array(
       'status' => 'success',
-      'message' => '회원명: ' . $jsonArray['user_id'] . "\n회원가입되었습니다."
+      'message' => '회원명: ' . $jsonArray['user_id'] . "\n회원가입 되었습니다."
     ), 200);
   }
 
-  public function user_get() {
-    echo 'hello, user get<br>';
-    $r = $this->user_model->getUsers();
+  public function login_post() {
+    // $auth = $this->_get_user_input();
+
+    return $this->response(array(
+      'status' => 'success',
+      'message' => '로그인 성공'
+    ));
+  }
+
+  private function _get_user_input() {
+    // request body 읽는 부분
+    $jsonArray = json_decode(file_get_contents('php://input'), true);
+    $auth = new Auth($jsonArray);
+    return $auth;
   }
 }

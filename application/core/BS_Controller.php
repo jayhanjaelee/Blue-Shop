@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class MY_Controller extends CI_Controller {
+class BS_Controller extends CI_Controller {
   public $pageTitle = 'Home';
 
   public function __construct($_pageTitle) {

@@ -34,7 +34,6 @@ class User_model extends CI_Model {
     }
 
     $keys = implode(',', $keys);
-    implode(',', $vals);
     $marks = implode(',', $marks);
 
     $sql = "INSERT INTO users ({$keys}) VALUES ({$marks});";

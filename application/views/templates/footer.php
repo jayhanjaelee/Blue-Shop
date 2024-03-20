@@ -5,9 +5,9 @@
   <script src="https://kit.fontawesome.com/bacab07d7b.js" crossorigin="anonymous"></script>
   <?php
   $path = explode('/', $_SERVER['REQUEST_URI'])[1];
-  if ($path === 'register') {
+  if ($path === 'register' || $path === 'login') {
   ?>
-    <script src="/static/js/register.js"></script>
+    <script src="/static/js/user.js"></script>
   <?php
   }
   ?>

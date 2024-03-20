@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Product extends MY_Controller {
+class Product extends BS_Controller {
 
   public function __construct() {
     $pageTitle = 'Product';
