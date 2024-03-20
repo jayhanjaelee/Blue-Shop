@@ -2,20 +2,28 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class MY_Controller extends CI_Controller {
-  public $page = 'home';
+  public $pageTitle = 'Home';
 
-  public function __construct($_page) {
+  public function __construct($_pageTitle) {
     parent::__construct();
-    $this->page = $_page;
+    $this->_connectDB();
+    $this->pageTitle = $_pageTitle;
   }
 
   public function render($params = null) {
-    $this->load->view('templates/header', array('title' => $this->page));
+    $this->load->view('templates/header', array('title' => $this->pageTitle));
     if (!empty($params)) {
-      $this->load->view($this->page, $params);
+      $this->load->view($this->pageTitle, $params);
     } else {
-      $this->load->view($this->page);
+      $this->load->view($this->pageTitle);
     }
     $this->load->view('templates/footer');
+  }
+
+  private function _connectDB() {
+    $this->load->database();
+    if ($this->db->initialize() === FALSE) {
+      die('not connected');
+    }
   }
 }

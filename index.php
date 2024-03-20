@@ -286,4 +286,9 @@ define('VIEWPATH', $view_folder . DIRECTORY_SEPARATOR);
  *
  * And away we go...
  */
+require_once __DIR__ . '/vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 require_once BASEPATH . 'core/CodeIgniter.php';
