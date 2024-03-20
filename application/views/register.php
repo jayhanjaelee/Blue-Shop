@@ -11,8 +11,7 @@
           <span class="register__asterisk">*</span>
           <label for="id">아이디</label>
         </div>
-        <input class="register__item-input" id="id" type="text" name="id" placeholder="아이디를 입력해주세요" autocomplete="on"
-          required>
+        <input class="register__item-input" id="user_id" type="text" name="user_id" placeholder="아이디를 입력해주세요" autocomplete="on" required>
         <button class="btn" type="button">중복확인</button>
       </div>
       <div class="register__item">
@@ -25,9 +24,9 @@
       <div class="register__item">
         <div class="register__title">
           <span class="register__asterisk">*</span>
-          <label for="password_check">비밀번호 확인</label>
+          <label for="re_password">비밀번호 확인</label>
         </div>
-        <input type="text" name="password_check" placeholder="비밀번호를 한번 더 입력해주세요" required>
+        <input type="text" name="re_password" placeholder="비밀번호를 한번 더 입력해주세요" required>
       </div>
       <div class="register__item">
         <div class="register__title">

@@ -65,6 +65,10 @@ $route['products/(:num)'] = 'products/getProducts/$1';
 $route['product'] = 'product';
 $route['product/(:num)'] = 'product/getProduct/$1';
 
+// API
+$route['api/user/register'] = 'api/register';
+$route['api/user/login'] = 'api/login';
+
 // Default Routing
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
