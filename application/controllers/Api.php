@@ -15,20 +15,28 @@ class Api extends RestController {
   public function index() {
   }
 
-  public function info_get() {
+  public function check_duplicate_get() {
     $input_data = $this->_get_user_input();
     $user = $this->user_model->get_insensitive_info($input_data['user_id']);
-    $res = res['success_get_insensitive_info'];
-    $res['res']['data'] = $user;
-    return $this->response(
-      $res['res'],
-      $res['code'],
-    );
+    echo var_dump($user);
+
+    if ($user !== null) {
+      return $this->response(
+        res['user_already_exists']['res'],
+        res['user_already_exists']['code'],
+      );
+    }
   }
 
   public function register_post() {
     $input_data = $this->_get_user_input();
-    $this->user_model->get($input_data['user_id']);
+    $user = $this->user_model->get($input_data['user_id']);
+    if ($user !== null) {
+      return $this->response(
+        res['user_already_exists']['res'],
+        res['user_already_exists']['code'],
+      );
+    }
 
     // check password
     if (!check_password($input_data['password'], $input_data['re_password'])) {

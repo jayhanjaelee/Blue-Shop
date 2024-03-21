@@ -69,7 +69,7 @@ $route['product/(:num)'] = 'product/getProduct/$1';
 $route['api/user/register'] = 'api/register';
 $route['api/user/login'] = 'api/login';
 $route['api/user/logout'] = 'api/logout';
-$route['api/user/info'] = 'api/info';
+$route['api/user/check/duplicate'] = 'api/check_duplicate';
 
 // Default Routing
 $route['404_override'] = '';

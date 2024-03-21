@@ -1,4 +1,4 @@
-import { getRequestUrl, processResponse } from "/static/js/utils.js";
+import { getRequestUrl, processResponse, request } from "/static/js/utils.js";
 import * as constants from "/static/js/constants.js";
 
 console.log(constants.BASEURL);
@@ -28,17 +28,4 @@ async function handleSubmit(event) {
 
 	let res = await request(requestUrl, "POST", jsonData);
 	processResponse(res);
-}
-
-async function request(url, method, jsonData) {
-	let options = {
-		method: method,
-		headers: {
-			"Content-Type": "application/json",
-		},
-	};
-
-	jsonData ? (options["body"] = JSON.stringify(jsonData)) : undefined;
-	const response = await fetch(url, options);
-	return response;
 }

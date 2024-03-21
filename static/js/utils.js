@@ -5,6 +5,7 @@ export function getRequestUrl(url) {
 }
 
 export async function processResponse(res) {
+	// fail
 	if (res.status !== 200) {
 		res = await res.json();
 		return alert(res["message"]);
@@ -14,4 +15,17 @@ export async function processResponse(res) {
 	res = await res.json();
 	alert(res["message"]);
 	window.location.href = constants.BASEURL;
+}
+
+export async function request(url, method, jsonData) {
+	let options = {
+		method: method,
+		headers: {
+			"Content-Type": "application/json",
+		},
+	};
+
+	jsonData ? (options["body"] = JSON.stringify(jsonData)) : undefined;
+	const response = await fetch(url, options);
+	return response;
 }

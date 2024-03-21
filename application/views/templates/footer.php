@@ -12,9 +12,9 @@
   <script type="module" src="/static/js/user/main.js"></script>
   <script type="module" src="/static/js/user/logout.js"></script>
   <?php
-  if ($path === 'login') {
+  if ($path === 'register') {
   ?>
-    <script type="module" src="/static/js/user/login.js"></script>
+    <script type="module" src="/static/js/user/register.js"></script>
   <?php
   }
   ?>
