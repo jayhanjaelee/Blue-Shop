@@ -68,6 +68,8 @@ $route['product/(:num)'] = 'product/getProduct/$1';
 // API
 $route['api/user/register'] = 'api/register';
 $route['api/user/login'] = 'api/login';
+$route['api/user/logout'] = 'api/logout';
+$route['api/user/info'] = 'api/info';
 
 // Default Routing
 $route['404_override'] = '';

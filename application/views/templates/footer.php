@@ -2,12 +2,19 @@
     Copyright &copy; Hanjae Lee. 2024 All Rights Reserved.
   </footer>
 
-  <script src="https://kit.fontawesome.com/bacab07d7b.js" crossorigin="anonymous"></script>
   <?php
-  $path = explode('/', $_SERVER['REQUEST_URI'])[1];
-  if ($path === 'register' || $path === 'login') {
+  $path = explode('/', $_SERVER['REQUEST_URI'])[1]
   ?>
-    <script src="/static/js/user.js"></script>
+
+  <script src="https://kit.fontawesome.com/bacab07d7b.js" crossorigin="anonymous"></script>
+  <script type="module" src="/static/js/constants.js"></script>
+  <script type="module" src="/static/js/utils.js"></script>
+  <script type="module" src="/static/js/user/main.js"></script>
+  <script type="module" src="/static/js/user/logout.js"></script>
+  <?php
+  if ($path === 'login') {
+  ?>
+    <script type="module" src="/static/js/user/login.js"></script>
   <?php
   }
   ?>
