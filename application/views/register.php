@@ -4,15 +4,16 @@
     <span class="register__asterisk">*</span>필수입력사항
   </div>
 
-  <form class="register__form" action="/register" method="POST">
+  <form class="register__form" action="/api/user/register" method="POST">
     <div class="register__items">
       <div class="register__item">
         <div class="register__title">
           <span class="register__asterisk">*</span>
           <label for="id">아이디</label>
         </div>
-        <input class="register__item-input" id="user_id" type="text" name="user_id" placeholder="아이디를 입력해주세요" autocomplete="on" required>
-        <button class="btn" type="button">중복확인</button>
+        <input class="register__item-input" id="user_id" type="text" name="user_id" placeholder="아이디를 입력해주세요"
+          autocomplete="on" required>
+        <button class="user-id-dup-check-btn btn" type="button">중복확인</button>
       </div>
       <div class="register__item">
         <div class="register__title">
@@ -30,10 +31,10 @@
       </div>
       <div class="register__item">
         <div class="register__title">
-          <!-- <span class="register__asterisk">*</span> -->
+          <span class="register__asterisk">*</span>
           <label for="name">이름</label>
         </div>
-        <input type="text" name="name" placeholder="이름을 입력해주세요" autocomplete="on">
+        <input type="text" name="name" placeholder="이름을 입력해주세요" autocomplete="on" required>
       </div>
       <div class="register__item">
         <div class="register__title">
@@ -53,10 +54,10 @@
       </div>
       <div class="register__item">
         <div class="register__title">
-          <span class="register__asterisk">*</span>
+          <!-- <span class="register__asterisk">*</span> -->
           <label for="address">주소</label>
         </div>
-        <input type="text" name="address" placeholder="ex: OOO도 OO시 OOO로" autocomplete="on" required>
+        <input type="text" name="address" placeholder="ex: OOO도 OO시 OOO로" autocomplete="on">
         <button class="btn" type="button">중복확인</button>
       </div>
     </div>

@@ -8,6 +8,8 @@ class BS_Controller extends CI_Controller {
     parent::__construct();
     $this->_connectDB();
     $this->pageTitle = $_pageTitle;
+    // $this->session->userdata('user_id');
+    // $this->session->userdata('logged_in');
   }
 
   public function render($params = null) {

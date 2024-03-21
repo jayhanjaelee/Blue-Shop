@@ -11,7 +11,17 @@ class User_model extends CI_Model {
   }
 
   function get($user_id) {
-    return $this->db->get_where('user', array('id' => $user_id))->row();
+    $sql = "SELECT * FROM users WHERE user_id = ?;";
+    $user = $this->db->query($sql, array($user_id))->row();
+    return $user;
+  }
+
+  function get_insensitive_info($user_id) {
+    $columns = implode(',', ['user_id', 'name', 'point']);
+    $sql = "SELECT {$columns} FROM users WHERE user_id = ?;";
+    echo $sql;
+    $user = $this->db->query($sql, array($user_id))->row();
+    return $user;
   }
 
   function register($params) {

@@ -1,7 +1,7 @@
 <div class="login-container">
   <h1 class="login-header">로그인</h1>
   <form class="login-form" action="/login" method="GET">
-    <input type="text" id="id-input" name="id" placeholder="아이디를 입력해주세요" required>
+    <input type="text" id="id-input" name="user_id" placeholder="아이디를 입력해주세요" required>
     </input>
     <input type="text" id="pw-input" name="password" placeholder="비밀번호를 입력해주세요" required>
     </input>
