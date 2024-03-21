@@ -2,7 +2,11 @@
 
 use chriskacerguis\RestServer\RestController;
 
-include_once APPPATH . '\libraries\response.php';
+if (PHP_OS == 'Darwin') {
+  include_once APPPATH . '/libraries/response.php';
+} else {
+  include_once APPPATH . '\libraries\response.php';
+}
 
 class Api extends RestController {
   public function __construct() {
