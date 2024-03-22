@@ -4,7 +4,7 @@
     <span class="register__asterisk">*</span>필수입력사항
   </div>
 
-  <form class="register__form" action="/api/user/register" method="POST">
+  <form class="register__form" action="/register" method="GET">
     <div class="register__items">
       <div class="register__item">
         <div class="register__title">

@@ -1,6 +1,7 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
 class User_model extends CI_Model {
+  private $table = 'users';
 
   function __construct() {
     parent::__construct();
@@ -18,9 +19,11 @@ class User_model extends CI_Model {
 
   function get_insensitive_info($user_id) {
     $columns = implode(',', ['user_id', 'name', 'point']);
-    $sql = "SELECT {$columns} FROM users WHERE user_id = ?;";
-    echo $sql;
+    $sql = "SELECT {$columns} FROM {$this->table} WHERE user_id = ?;";
     $user = $this->db->query($sql, array($user_id))->row();
+    if (!$user) {
+      return null;
+    }
     return $user;
   }
 
