@@ -71,6 +71,11 @@ $route['api/user/login'] = 'api/login';
 $route['api/user/logout'] = 'api/logout';
 $route['api/user/check/duplicate'] = 'api/check_duplicate';
 
+$route['api/prouducts'] = 'api/products';
+$route['api/prouducts/(:num)'] = 'api/products/$1';
+$route['api/product'] = 'api/product';
+$route['api/product/(:num)'] = 'api/product/$1';
+
 // Default Routing
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
