@@ -11,8 +11,7 @@
           <span class="register__asterisk">*</span>
           <label for="id">아이디</label>
         </div>
-        <input class="register__item-input" id="user_id" type="text" name="user_id" placeholder="아이디를 입력해주세요"
-          autocomplete="on" required>
+        <input class="register__item-input" id="user_id" type="text" name="user_id" placeholder="아이디를 입력해주세요" autocomplete="on" required>
         <button class="user-id-dup-check-btn btn" type="button">중복확인</button>
       </div>
       <div class="register__item">
@@ -58,7 +57,7 @@
           <label for="address">주소</label>
         </div>
         <input type="text" name="address" placeholder="ex: OOO도 OO시 OOO로" autocomplete="on">
-        <button class="btn" type="button">중복확인</button>
+        <!-- <button class="btn" type="button">중복확인</button> -->
       </div>
     </div>
     <div class="register__form-btn-container">
