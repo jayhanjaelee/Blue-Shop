@@ -15,17 +15,23 @@ class Api extends RestController {
   public function index() {
   }
 
-  public function check_duplicate_get() {
+  public function check_duplicate_post() {
     $input_data = $this->_get_user_input();
     $user = $this->user_model->get_insensitive_info($input_data['user_id']);
-    echo var_dump($user);
 
-    if ($user !== null) {
+    // 사용가능한 아이디
+    if (!$user) {
       return $this->response(
-        res['user_already_exists']['res'],
-        res['user_already_exists']['code'],
+        res['user_id_available']['res'],
+        res['user_id_available']['code'],
       );
     }
+
+    // 중복 아이디
+    return $this->response(
+      res['user_already_exists']['res'],
+      res['user_already_exists']['code'],
+    );
   }
 
   public function register_post() {

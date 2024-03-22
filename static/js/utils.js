@@ -5,16 +5,21 @@ export function getRequestUrl(url) {
 }
 
 export async function processResponse(res) {
+	let jsonRes = null;
 	// fail
 	if (res.status !== 200) {
-		res = await res.json();
-		return alert(res["message"]);
+		jsonRes = await res.json();
+		return alert(jsonRes["message"]);
 	}
 
 	// success
-	res = await res.json();
-	alert(res["message"]);
-	window.location.href = constants.BASEURL;
+	jsonRes = await res.json();
+	alert(jsonRes["message"]);
+
+	// redirect when it is success.
+	if (jsonRes["status"] === "success_then_redirect") {
+		window.location.href = constants.BASEURL;
+	}
 }
 
 export async function request(url, method, jsonData) {
@@ -25,7 +30,38 @@ export async function request(url, method, jsonData) {
 		},
 	};
 
-	jsonData ? (options["body"] = JSON.stringify(jsonData)) : undefined;
+	jsonData ? (options["body"] = JSON.stringify(jsonData)) : null;
+
 	const response = await fetch(url, options);
 	return response;
 }
+
+export function handleSubmit(requestUrl) {
+	console.log(111);
+	return async function (event) {
+		event.preventDefault();
+		const data = new FormData(event.target);
+		const jsonData = {};
+		for (const [key, value] of data.entries()) {
+			if (value.length == 0) continue;
+			jsonData[key] = value;
+		}
+		let res = await request(requestUrl, "POST", jsonData);
+		processResponse(res);
+	};
+}
+
+// export async function handleSubmit(event) {
+// 	console.log("clicked");
+// 	event.preventDefault();
+// 	const data = new FormData(event.target);
+// 	const jsonData = {};
+
+// 	for (const [key, value] of data.entries()) {
+// 		if (value.length == 0) continue;
+// 		jsonData[key] = value;
+// 	}
+
+// 	let res = await request(requestUrl, "POST", jsonData);
+// 	processResponse(res);
+// }
