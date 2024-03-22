@@ -6,10 +6,8 @@ class BS_Controller extends CI_Controller {
 
   public function __construct($_pageTitle) {
     parent::__construct();
-    $this->_connectDB();
     $this->pageTitle = $_pageTitle;
-    // $this->session->userdata('user_id');
-    // $this->session->userdata('logged_in');
+    // $this->_connectDB();
   }
 
   public function render($params = null) {
@@ -20,6 +18,16 @@ class BS_Controller extends CI_Controller {
       $this->load->view($this->pageTitle);
     }
     $this->load->view('templates/footer');
+  }
+
+  protected function _request($url) {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+    $response = curl_exec($ch);
+    curl_close($ch);
+    return $response;
   }
 
   private function _connectDB() {

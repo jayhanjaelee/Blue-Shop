@@ -13,12 +13,14 @@ class Api extends RestController {
     parent::__construct();
     header('Content-Type: application/json; charset=utf-8');
     $this->load->model('user_model');
+    $this->load->model('product_model');
     $this->load->helper('auth_helper');
   }
 
   public function index() {
   }
 
+  // user start
   public function check_duplicate_post() {
     $input_data = $this->_get_user_input();
     $user = $this->user_model->get_insensitive_info($input_data['user_id']);
@@ -116,10 +118,56 @@ class Api extends RestController {
       res['success_logout']['code'],
     );
   }
+  // user end
 
   private function _get_user_input() {
     // request body 읽는 부분
     $data = json_decode(file_get_contents('php://input'), true);
     return $data;
   }
+
+  // products start
+  public function products_get($page = 1) {
+    $is_valid_category = in_array($_GET['categories'], array_keys(categories), true);
+    if (!$is_valid_category) {
+      return $this->response(
+        res['invalid_category']['res'],
+        res['invalid_category']['code']
+      );
+    }
+
+    $cid = categories[$_GET['categories']];
+    $limit = 6;
+    $offset = ($page - 1) * $limit;
+
+    $products = $this->product_model->getProducts($cid, $limit, $offset);
+    $count = $this->product_model->getProductsCount($cid);
+
+    if ($products === null) {
+      return $this->response(
+        res['no_more_products']['res'],
+        res['no_more_products']['code']
+      );
+    }
+
+    $data = array(
+      'products' => $products,
+      'count' => $count->products_count
+    );
+
+    return $this->response($data, 200);
+  }
+
+  public function product_get($product_id) {
+    $product = $this->product_model->get($product_id);
+
+    if ($product === null) {
+      return $this->response(
+        res['not_exists_product']['res'],
+        res['not_exists_product']['code'],
+      );
+    }
+    return $this->response($product, 200);
+  }
+  // products end
 }

@@ -1,16 +1,48 @@
+<?php
+$page_count_at_once = 9;
+$products_count_at_once = 6;
+$category = $_GET["category"];
+$current_page = $this->uri->segment(2);
+
+$max_page = ceil($data['count'] / $products_count_at_once);
+$page_group = ceil($current_page / $page_count_at_once);
+$first_page = (($page_group - 1) * $page_count_at_once) + 1;
+$last_page = $page_group * $page_count_at_once;
+?>
 <!-- pagination start -->
 <ul class="pagination" role="menubar" aria-label="Pagination">
-  <li><a href="/products/{min - 1}"><i class="fa-solid fa-angle-left fa-sm"></i></a></li>
-  <li class="current"><a href="/products/1">1</a></li>
-  <li><a href="/products/2">2</a></li>
-  <li><a href="/products/3">3</a></li>
-  <li><a href="/products/4">4</a></li>
-  <li><a href="/products/5">5</a></li>
-  <li><a href="/products/6">6</a></li>
-  <li><a href="/products/7">7</a></li>
-  <li><a href="/products/8">8</a></li>
-  <li><a href="/products/9">9</a></li>
-  <!-- <li><a href="/products/10">10</a></li> -->
-  <li><a href="/products/{max + 1}"><i class="fa-solid fa-angle-right fa-sm"></i></a></li>
+  <?php
+  if ($first_page != 1) {
+  ?>
+  <li><a href="/products/<?= $first_page - 1 ?>?category=<?= $category ?>"><i
+        class="fa-solid fa-angle-left fa-sm"></i></a></li>
+  <?php
+  }
+  ?>
+  <?php
+  for ($i = $first_page; $i < $last_page + 1; $i++) {
+    if ($i > $max_page) break;
+    $str_i = number_format($i, 0);
+    if ($str_i === $current_page) {
+  ?>
+  <li class="current"><a href="/products/<?= $i ?>?category=<?= $category ?>"><?= $i ?></a></li>
+  <?php
+    } else {
+    ?>
+  <li><a href="/products/<?= $i ?>?category=<?= $category ?>"><?= $i ?></a></li>
+  <?php
+    }
+    ?>
+  <?php
+  }
+  ?>
+  <?php
+  if ($last_page < $max_page) {
+  ?>
+  <li><a href="/products/<?= $last_page + 1 ?>?category=<?= $category ?>"><i
+        class="fa-solid fa-angle-right fa-sm"></i></a></li>
+  <?php
+  }
+  ?>
 </ul>
 <!-- pagination end -->
