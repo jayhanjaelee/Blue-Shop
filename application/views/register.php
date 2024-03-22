@@ -4,14 +4,15 @@
     <span class="register__asterisk">*</span>필수입력사항
   </div>
 
-  <form class="register__form" action="/api/user/register" method="POST">
+  <form class="register__form" action="/register" method="GET">
     <div class="register__items">
       <div class="register__item">
         <div class="register__title">
           <span class="register__asterisk">*</span>
           <label for="id">아이디</label>
         </div>
-        <input class="register__item-input" id="user_id" type="text" name="user_id" placeholder="아이디를 입력해주세요" autocomplete="on" required>
+        <input class="register__item-input" id="user_id" type="text" name="user_id" placeholder="아이디를 입력해주세요"
+          autocomplete="on" required>
         <button class="user-id-dup-check-btn btn" type="button">중복확인</button>
       </div>
       <div class="register__item">
