@@ -12,14 +12,14 @@
   <?php
   if ($path === 'register') {
   ?>
-    <script type="module" src="/static/js/user/register.js"></script>
+  <script type="module" src="/static/js/user/register.js"></script>
   <?php
   }
   ?>
   <?php
   if ($path === 'login') {
   ?>
-    <script type="module" src="/static/js/user/login.js"></script>
+  <script type="module" src="/static/js/user/login.js"></script>
   <?php
   }
   ?>

@@ -37,7 +37,6 @@ export async function request(url, method, jsonData) {
 }
 
 export function handleSubmit(requestUrl) {
-	console.log(111);
 	return async function (event) {
 		event.preventDefault();
 		const data = new FormData(event.target);
@@ -50,18 +49,3 @@ export function handleSubmit(requestUrl) {
 		processResponse(res);
 	};
 }
-
-// export async function handleSubmit(event) {
-// 	console.log("clicked");
-// 	event.preventDefault();
-// 	const data = new FormData(event.target);
-// 	const jsonData = {};
-
-// 	for (const [key, value] of data.entries()) {
-// 		if (value.length == 0) continue;
-// 		jsonData[key] = value;
-// 	}
-
-// 	let res = await request(requestUrl, "POST", jsonData);
-// 	processResponse(res);
-// }
