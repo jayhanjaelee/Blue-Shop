@@ -8,7 +8,7 @@ CREATE TABLE `users` (
 	`email`	varchar(255)	UNIQUE NULL,
 	`mobile_phone`	varchar(255)	UNIQUE NULL,
 	`address`	varchar(255) NULL,
-	`point`	decimal(7,0)	NULL DEFAULT 200000
+	`point`	INT UNSIGNED	NULL DEFAULT 200000
 );
 
 DROP TABLE IF EXISTS `products`;
@@ -553,6 +553,6 @@ INSERT INTO products (name, price, image, category_id) VALUES ('digital item 94'
 INSERT INTO products (name, price, image, category_id) VALUES ('digital item 95', 58800, '8.jpg', 3);
 INSERT INTO products (name, price, image, category_id) VALUES ('digital item 96', 46700, '1.jpg', 3);
 INSERT INTO products (name, price, image, category_id) VALUES ('digital item 97', 75100, '11.jpg', 3);
-INSERT INTO products (name, price, image, category_id) VALUES ('digital item 98', 12500, '15.jpg', 3);
+INSERT INTO products (name, price, image, category_id) VALUES ('digital item 98', 12500, '3.jpg', 3);
 INSERT INTO products (name, price, image, category_id) VALUES ('digital item 99', 49400, '4.jpg', 3);
 INSERT INTO products (name, price, image, category_id) VALUES ('digital item 100',25800, '12.jpg', 3);

@@ -19,14 +19,14 @@
           <span class="register__asterisk">*</span>
           <label for="password">비밀번호</label>
         </div>
-        <input type="text" name="password" placeholder="비밀번호를 입력해주세요" required>
+        <input type="password" name="password" placeholder="비밀번호를 입력해주세요" required>
       </div>
       <div class="register__item">
         <div class="register__title">
           <span class="register__asterisk">*</span>
           <label for="re_password">비밀번호 확인</label>
         </div>
-        <input type="text" name="re_password" placeholder="비밀번호를 한번 더 입력해주세요" required>
+        <input type="password" name="re_password" placeholder="비밀번호를 한번 더 입력해주세요" required>
       </div>
       <div class="register__item">
         <div class="register__title">

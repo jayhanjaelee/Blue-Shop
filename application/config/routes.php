@@ -65,6 +65,10 @@ $route['products/(:num)'] = 'products/getProducts/$1';
 $route['product'] = 'product';
 $route['product/(:num)'] = 'product/getProduct/$1';
 
+// search results
+$route['products/search'] = 'products/getProductsBySearch/$1';
+$route['products/search/(:num)'] = 'products/getProductsBySearch/$1';
+
 // API
 $route['api/user/register'] = 'api/register';
 $route['api/user/login'] = 'api/login';
@@ -73,8 +77,13 @@ $route['api/user/check/duplicate'] = 'api/check_duplicate';
 
 $route['api/prouducts'] = 'api/products';
 $route['api/prouducts/(:num)'] = 'api/products/$1';
+
+$route['api/products/search'] = 'api/products_search';
+$route['api/products/search/(:num)'] = 'api/products_search/$1';
+
 $route['api/product'] = 'api/product';
 $route['api/product/(:num)'] = 'api/product/$1';
+$route['api/product/buy/(:num)'] = 'api/product_buy/$1';
 
 // Default Routing
 $route['404_override'] = '';

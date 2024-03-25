@@ -7,14 +7,24 @@ class User_model extends CI_Model {
     parent::__construct();
   }
 
-  function getUsers() {
-    return $this->db->query("SELECT * FROM users")->result();
+  function get_users() {
+    return $this->db->query("SELECT * FROM {$this->table}")->result();
   }
 
   function get($user_id) {
     $sql = "SELECT * FROM users WHERE user_id = ?;";
     $user = $this->db->query($sql, array($user_id))->row();
     return $user;
+  }
+
+  function update_point($user_id, $product_price) {
+    $this->db->db_debug = FALSE;
+    $sql = "UPDATE {$this->table} SET point = point - {$product_price} WHERE user_id = '{$user_id}';";
+    $result = $this->db->query($sql);
+    if (!$result) {
+      $this->db->error('user point is out of point.');
+    }
+    return $result;
   }
 
   function get_insensitive_info($user_id) {

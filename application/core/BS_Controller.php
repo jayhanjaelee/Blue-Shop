@@ -7,11 +7,18 @@ class BS_Controller extends CI_Controller {
   public function __construct($_pageTitle) {
     parent::__construct();
     $this->pageTitle = $_pageTitle;
-    // $this->_connectDB();
+    $this->load->model('user_model');
   }
 
   public function render($params = null) {
-    $this->load->view('templates/header', array('title' => $this->pageTitle));
+    $user_info = null;
+    if ($this->session->userdata('user_id')) {
+      $user_info = $this->user_model->get_insensitive_info($this->session->userdata['user_id']);
+    }
+    $this->load->view(
+      'templates/header',
+      array('title' => $this->pageTitle, 'user_info' => $user_info)
+    );
     if (!empty($params)) {
       $this->load->view($this->pageTitle, $params);
     } else {
@@ -28,11 +35,5 @@ class BS_Controller extends CI_Controller {
     $response = curl_exec($ch);
     curl_close($ch);
     return $response;
-  }
-
-  private function _connectDB() {
-    if ($this->db->initialize() === FALSE) {
-      die('not connected');
-    }
   }
 }

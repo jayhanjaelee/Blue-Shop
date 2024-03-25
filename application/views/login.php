@@ -3,7 +3,7 @@
   <form class="login-form" action="/login" method="GET">
     <input type="text" id="id-input" name="user_id" placeholder="아이디를 입력해주세요" required>
     </input>
-    <input type="text" id="pw-input" name="password" placeholder="비밀번호를 입력해주세요" required>
+    <input type="password" id="pw-input" name="password" placeholder="비밀번호를 입력해주세요" required>
     </input>
     <div class="login-form__idpw-find">
       <ul>

@@ -99,7 +99,8 @@ class Api extends RestController {
     $payload = array(
       'user_id' => $user->user_id,
       'name' => $user->name,
-      'point' => $user->point
+      'point' => $user->point,
+      'logged_in' => true
     );
 
     // 로그인 성공했을 때 session 설정.
@@ -128,7 +129,7 @@ class Api extends RestController {
 
   // products start
   public function products_get($page = 1) {
-    $is_valid_category = in_array($_GET['categories'], array_keys(categories), true);
+    $is_valid_category = in_array($_GET['category'], array_keys(categories), true);
     if (!$is_valid_category) {
       return $this->response(
         res['invalid_category']['res'],
@@ -136,12 +137,12 @@ class Api extends RestController {
       );
     }
 
-    $cid = categories[$_GET['categories']];
+    $cid = categories[$_GET['category']];
     $limit = 6;
     $offset = ($page - 1) * $limit;
 
-    $products = $this->product_model->getProducts($cid, $limit, $offset);
-    $count = $this->product_model->getProductsCount($cid);
+    $products = $this->product_model->get_products($cid, $limit, $offset);
+    $count = $this->product_model->get_products_count(array('cid' => $cid));
 
     if ($products === null) {
       return $this->response(
@@ -149,6 +150,27 @@ class Api extends RestController {
         res['no_more_products']['code']
       );
     }
+
+    $data = array(
+      'products' => $products,
+      'count' => $count->products_count
+    );
+
+    return $this->response($data, 200);
+  }
+
+  public function products_search_get($page = 1) {
+    $query = '';
+    if (isset($_GET['query'])) {
+      $query = $_GET['query'];
+    }
+
+    $limit = 6;
+    $offset = ($page - 1) * $limit;
+    $query = urldecode($query); // %20 -> whitespace
+
+    $products = $this->product_model->get_products_by_search($query, $limit, $offset);
+    $count = $this->product_model->get_products_count(array("query" => $query));
 
     $data = array(
       'products' => $products,
@@ -170,4 +192,42 @@ class Api extends RestController {
     return $this->response($product, 200);
   }
   // products end
+
+  public function product_buy_post($product_id) {
+    $input_data = $this->_get_user_input();
+    $data = $input_data;
+    $product_price = $data['price'];
+
+    // get user info
+    $user_info = $this->user_model->get_insensitive_info($this->session->userdata['user_id']);
+    $data['user_id'] = $user_info->user_id;
+    $data['name'] = $user_info->name;
+    $data['point'] = intval($user_info->point);
+
+    // 상품 재고 에러
+    $result = $this->product_model->update_stock($product_id, $data['product_count']);
+    if (!$result) {
+      $this->response(
+        res['no_more_stock']['res'],
+        res['no_more_stock']['code'],
+      );
+    }
+
+    // 유저 포인트 에러
+    $result = $this->user_model->update_point($data['user_id'], $data['price']);
+    if (!$result) {
+      $this->response(
+        res['not_enough_point']['res'],
+        res['not_enough_point']['code'],
+      );
+    }
+
+    // success
+    return $this->response(
+      $this->response(
+        res['success_buy_product']['res'],
+        res['success_buy_product']['code'],
+      )
+    );
+  }
 }
