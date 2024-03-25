@@ -56,7 +56,7 @@ INSERT INTO products (name, price, image, category_id) VALUES ('fashion item 01'
 INSERT INTO products (name, price, image, category_id) VALUES ('fashion item 02', 72700, '10.avif', 1);
 INSERT INTO products (name, price, image, category_id) VALUES ('fashion item 03', 73500, '1.avif', 1);
 INSERT INTO products (name, price, image, category_id) VALUES ('fashion item 04', 97400, '3.avif', 1);
-INSERT INTO products (name, price, image, category_id) VALUES ('fashion item 05', 25100, '6.avif', 1);
+INSERT INTO products (name, price, image, category_id) VALUES ('유니클로 데님자켓', 25100, '6.avif', 1);
 INSERT INTO products (name, price, image, category_id) VALUES ('fashion item 06', 98700, '10.avif', 1);
 INSERT INTO products (name, price, image, category_id) VALUES ('fashion item 07', 53200, '7.avif', 1);
 INSERT INTO products (name, price, image, category_id) VALUES ('fashion item 08', 41300, '8.avif', 1);
@@ -457,11 +457,11 @@ INSERT INTO products (name, price, image, category_id) VALUES ('food item 100',2
 
 -- digital products
 INSERT INTO products (name, price, image, category_id) VALUES ('digital item 01', 38100, '4.jpg', 3);
-INSERT INTO products (name, price, image, category_id) VALUES ('digital item 02', 22700, '3.jpg', 3);
-INSERT INTO products (name, price, image, category_id) VALUES ('digital item 03', 37200, '9.jpg', 3);
-INSERT INTO products (name, price, image, category_id) VALUES ('digital item 04', 46600, '1.jpg', 3);
-INSERT INTO products (name, price, image, category_id) VALUES ('digital item 05', 67800, '8.jpg', 3);
-INSERT INTO products (name, price, image, category_id) VALUES ('digital item 06', 54200, '3.jpg', 3);
+INSERT INTO products (name, price, image, category_id) VALUES ('로지텍 미니 키보드 1', 22700, '3.jpg', 3);
+INSERT INTO products (name, price, image, category_id) VALUES ('보스 헤드셋', 37200, '9.jpg', 3);
+INSERT INTO products (name, price, image, category_id) VALUES ('해피해킹 키보드', 46600, '1.jpg', 3);
+INSERT INTO products (name, price, image, category_id) VALUES ('레이저 헤드셋', 67800, '8.jpg', 3);
+INSERT INTO products (name, price, image, category_id) VALUES ('로지텍 미니 키보드 2', 54200, '3.jpg', 3);
 INSERT INTO products (name, price, image, category_id) VALUES ('digital item 07', 95600, '4.jpg', 3);
 INSERT INTO products (name, price, image, category_id) VALUES ('digital item 08', 77800, '7.jpg', 3);
 INSERT INTO products (name, price, image, category_id) VALUES ('digital item 09', 63400, '3.jpg', 3);
@@ -552,7 +552,7 @@ INSERT INTO products (name, price, image, category_id) VALUES ('digital item 93'
 INSERT INTO products (name, price, image, category_id) VALUES ('digital item 94', 27300, '7.jpg', 3);
 INSERT INTO products (name, price, image, category_id) VALUES ('digital item 95', 58800, '8.jpg', 3);
 INSERT INTO products (name, price, image, category_id) VALUES ('digital item 96', 46700, '1.jpg', 3);
-INSERT INTO products (name, price, image, category_id) VALUES ('digital item 97', 75100, '11.jpg', 3);
-INSERT INTO products (name, price, image, category_id) VALUES ('digital item 98', 12500, '3.jpg', 3);
-INSERT INTO products (name, price, image, category_id) VALUES ('digital item 99', 49400, '4.jpg', 3);
-INSERT INTO products (name, price, image, category_id) VALUES ('digital item 100',25800, '12.jpg', 3);
+INSERT INTO products (name, price, image, category_id) VALUES ('아이팟 클래식', 75100, '11.jpg', 3);
+INSERT INTO products (name, price, image, category_id) VALUES ('로지텍 키보드 미니 3', 12500, '3.jpg', 3);
+INSERT INTO products (name, price, image, category_id) VALUES ('기계식 키보드', 49400, '4.jpg', 3);
+INSERT INTO products (name, price, image, category_id) VALUES ('갤럭시탭 울트라',25800, '12.jpg', 3);

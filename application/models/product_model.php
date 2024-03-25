@@ -22,7 +22,6 @@ class Product_model extends CI_Model {
 
   function get_products_by_search($query, $limit = 6, $offset = 0) {
     $sql = "SELECT * FROM {$this->table} WHERE name LIKE '%" .  $this->db->escape_like_str($query) . "%' LIMIT {$limit} OFFSET {$offset};";
-    var_dump($sql);
     $products = $this->db->query($sql)->result();
     return $products;
   }

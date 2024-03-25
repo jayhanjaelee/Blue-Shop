@@ -95,7 +95,7 @@ class Api extends RestController {
       );
     }
 
-    // session 발급해서 리턴으로 주어야함 혹은 jwt 사용
+    // session 발급해서 리턴으로 주어야함 
     $payload = array(
       'user_id' => $user->user_id,
       'name' => $user->name,

@@ -7,6 +7,7 @@ class Products extends BS_Controller {
     $pageTitle = 'Products';
     parent::__construct($pageTitle);
     $this->load->helper('url');
+    $this->load->model('product_model');
   }
 
   public function index() {
@@ -30,15 +31,16 @@ class Products extends BS_Controller {
 
   public function getProductsBySearch($page = 1) {
     $params = ['page' => $page];
-    $query = $_GET['query'];
+    $params['query'] = $_GET['query'];
     $this->pageTitle = 'products_by_search';
 
-    $url = 'http://' . $_SERVER['SERVER_NAME'] . "/api/products/search/{$page}?query={$query}";
-    var_dump($url);
-    $response = $this->_request($url);
-    var_dump($response);
-    // json decode 하면 데이터가 유실됨
-    $params['data'] = json_decode($response, true);
+    $limit = 6;
+    $offset = ($page - 1) * $limit;
+
+    $products = $this->product_model->get_products_by_search($params['query'], $limit, $offset);
+    $count = $this->product_model->get_products_count($params, $limit, $offset);
+    $params['data'] = $products;
+    $params['count'] = $count;
 
     $this->render($params);
   }

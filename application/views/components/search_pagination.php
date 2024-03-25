@@ -3,7 +3,7 @@ $page_count_at_once = 9;
 $products_count_at_once = 6;
 $current_page = $this->uri->segment(3);
 
-$max_page = ceil($data['count'] / $products_count_at_once);
+$max_page = ceil($count->products_count / $products_count_at_once);
 $page_group = ceil($current_page / $page_count_at_once);
 $first_page = (($page_group - 1) * $page_count_at_once) + 1;
 $last_page = $page_group * $page_count_at_once;
@@ -13,7 +13,8 @@ $last_page = $page_group * $page_count_at_once;
   <?php
   if ($first_page != 1) {
   ?>
-    <li><a href="/products/search/<?= $first_page - 1 ?>?query=<?= $_GET['query'] ?>""><i class=" fa-solid fa-angle-left fa-sm"></i></a></li>
+  <li><a href="/products/search/<?= $first_page - 1 ?>?query=<?= $_GET['query'] ?>""><i class=" fa-solid fa-angle-left
+      fa-sm"></i></a></li>
   <?php
   }
   ?>
@@ -23,12 +24,12 @@ $last_page = $page_group * $page_count_at_once;
     $str_i = number_format($i, 0);
     if ($str_i === $current_page) {
   ?>
-      <li class="current"><a href="/products/search/<?= $i ?>?query=<?= $_GET['query'] ?>"><?= $i ?></a></li>
-    <?php
+  <li class="current"><a href="/products/search/<?= $i ?>?query=<?= $_GET['query'] ?>"><?= $i ?></a></li>
+  <?php
     } else {
     ?>
-      <li><a href="/products/search/<?= $i ?>?query=<?= $_GET['query'] ?>"><?= $i ?></a></li>
-    <?php
+  <li><a href="/products/search/<?= $i ?>?query=<?= $_GET['query'] ?>"><?= $i ?></a></li>
+  <?php
     }
     ?>
   <?php
@@ -39,7 +40,8 @@ $last_page = $page_group * $page_count_at_once;
   <?php
   if ($last_page < $max_page) {
   ?>
-    <li><a href="/products/search/<?= $last_page + 1 ?>?query=<?= $_GET['query'] ?>"><i class="fa-solid fa-angle-right fa-sm"></i></a></li>
+  <li><a href="/products/search/<?= $last_page + 1 ?>?query=<?= $_GET['query'] ?>"><i
+        class="fa-solid fa-angle-right fa-sm"></i></a></li>
   <?php
   }
   ?>
