@@ -5,6 +5,8 @@ $categories = array(
   3 => "digital",
 );
 
+var_dump($data);
+
 $query = $_GET['query'];
 ?>
 <div class="products-container m0auto">

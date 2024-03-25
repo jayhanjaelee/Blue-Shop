@@ -34,7 +34,10 @@ class Products extends BS_Controller {
     $this->pageTitle = 'products_by_search';
 
     $url = 'http://' . $_SERVER['SERVER_NAME'] . "/api/products/search/{$page}?query={$query}";
+    var_dump($url);
     $response = $this->_request($url);
+    var_dump($response);
+    // json decode 하면 데이터가 유실됨
     $params['data'] = json_decode($response, true);
 
     $this->render($params);
