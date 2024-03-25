@@ -1,9 +1,20 @@
 <?php
-$category = $_GET['category'];
-$image = "/static/imgs/products/{$category}/{$product['image']}";
+$category = isset($_GET['category']) ? $_GET['category'] : null;
 
 $session = $this->session->userdata;
 $is_login = isset($session['logged_in']) ? $session['logged_in'] : false;
+
+$categories = array(
+  "1" => "fashion",
+  "2" => "food",
+  "3" => "digital",
+);
+// 검색 페이지 결과물 카테고리 설정 (이미지 불러오기 위함)
+if (isset($_GET['query'])) {
+  $category = $categories[$product['category_id']];
+}
+
+$image = "/static/imgs/products/{$category}/{$product['image']}";
 ?>
 <div class="product-container m0auto">
   <div class="product-image-container">
