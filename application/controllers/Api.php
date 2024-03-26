@@ -22,10 +22,11 @@ class Api extends RestController {
 
   // user start
   public function check_duplicate_post() {
+    // 유저 조회
     $input_data = $this->_get_user_input();
     $user = $this->user_model->get_insensitive_info($input_data['user_id']);
 
-    // 사용가능한 아이디
+    // 유저가 존재하지 않을 경우 사용가능한 아이디
     if (!$user) {
       return $this->response(
         res['user_id_available']['res'],
@@ -43,6 +44,8 @@ class Api extends RestController {
   public function register_post() {
     $input_data = $this->_get_user_input();
     $user = $this->user_model->get($input_data['user_id']);
+
+    // 유저 정보 조회 후 존재하면 에러 리턴
     if ($user !== null) {
       return $this->response(
         res['user_already_exists']['res'],
@@ -50,7 +53,7 @@ class Api extends RestController {
       );
     }
 
-    // check password
+    // input 비밀번호, 비밀번호 확인 검사
     if (!check_password($input_data['password'], $input_data['re_password'])) {
       return $this->response(
         res['fail_password_check']['res'],
@@ -58,7 +61,7 @@ class Api extends RestController {
       );
     }
 
-    // call register()
+    // 비밀번호 일치하면 회원가입 성공
     $input_data['password'] = hash_password($input_data['password']);
     $result = $this->user_model->register($input_data);
 
@@ -129,6 +132,7 @@ class Api extends RestController {
 
   // products start
   public function products_get($page = 1) {
+    // 카테고리 유효성 검사
     $is_valid_category = in_array($_GET['category'], array_keys(categories), true);
     if (!$is_valid_category) {
       return $this->response(
@@ -137,13 +141,16 @@ class Api extends RestController {
       );
     }
 
+    // 기본 property 설정 (카테고리 id, limit, offset)
     $cid = categories[$_GET['category']];
     $limit = 6;
     $offset = ($page - 1) * $limit;
 
+    // db products 테이블 에서 products, counts 조회
     $products = $this->product_model->get_products($cid, $limit, $offset);
     $count = $this->product_model->get_products_count(array('cid' => $cid));
 
+    // 페이지가 더이상 없을 경우 에러리턴
     if ($products === null) {
       return $this->response(
         res['no_more_products']['res'],
@@ -151,6 +158,7 @@ class Api extends RestController {
       );
     }
 
+    // 성공시 producst 배열에 저장하여 리턴
     $data = array(
       'products' => $products,
       'count' => $count->products_count
@@ -160,18 +168,22 @@ class Api extends RestController {
   }
 
   public function products_search_get($page = 1) {
+    // query 설정
     $query = '';
     if (isset($_GET['query'])) {
       $query = $_GET['query'];
     }
 
+    // limit, offset, query 공백 디코딩.
     $limit = 6;
     $offset = ($page - 1) * $limit;
     $query = urldecode($query); // %20 -> whitespace
 
+    // producst db 에서 조회
     $products = $this->product_model->get_products_by_search($query, $limit, $offset);
     $count = $this->product_model->get_products_count(array("query" => $query));
 
+    // 성공시 producst, count 반환
     $data = array(
       'products' => $products,
       'count' => $count->products_count
@@ -181,24 +193,27 @@ class Api extends RestController {
   }
 
   public function product_get($product_id) {
+    // db products 테이블에서 id 로 상품 조회
     $product = $this->product_model->get($product_id);
 
+    // 상품 존재하지 않을 경우 에러 리턴
     if ($product === null) {
       return $this->response(
         res['not_exists_product']['res'],
         res['not_exists_product']['code'],
       );
     }
+    // 성공시 상품 리턴
     return $this->response($product, 200);
   }
   // products end
 
   public function product_buy_post($product_id) {
+    // 유저 입력 설정
     $input_data = $this->_get_user_input();
     $data = $input_data;
-    $product_price = $data['price'];
 
-    // get user info
+    // 상품 구매가 가능한 포인트가 있는 유저인지 확인하기 위해 users 테이블에서 유저정보 조회
     $user_info = $this->user_model->get_insensitive_info($this->session->userdata['user_id']);
     $data['user_id'] = $user_info->user_id;
     $data['name'] = $user_info->name;
