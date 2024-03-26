@@ -60,11 +60,19 @@ lineNumbers: true
 <br>
 
 - php 7.4.33 
-- code igniter 3,
+- code igniter 3
 - mysql 8 
 - javascript, css
 
 ---
+
+# 발표 순서
+
+1. 프로젝트 설정
+2. 기능 시연
+3. 기능 구현
+
+<br>
 
 # 기능 구현 목록
 
@@ -76,6 +84,12 @@ lineNumbers: true
 6. 단일 상품 조회
 7. 상품 구매
 8. 상품 검색
+
+---
+
+<div style="display: flex; min-height: 50vh; justify-content: center; align-items: center;">
+  <h1>프로젝트 설정</h1>
+</div>
 
 ---
 
@@ -105,6 +119,12 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php/$1 [L]
 ```
+
+---
+
+<div style="display: flex; min-height: 50vh; justify-content: center; align-items: center;">
+  <h1>기능 구현</h1>
+</div>
 
 ---
 
@@ -180,6 +200,10 @@ static/css
 
 # vars.css
 
+### 필요한 색상 변수로 관리
+
+<br>
+
 ```css {all}{maxHeight:'400px'}
 :root {
   --orange: #FA6230;
@@ -203,6 +227,8 @@ static/css
 ---
 
 # layout
+
+#### 마켓컬리 레이아웃 참고
 
 ![figma](/imgs/figma.png)
 
@@ -249,6 +275,75 @@ controllers, views, models
 
 ---
 
+# javascript
+
+```sh
+static/js
+├── constants.js
+├── pagination.js
+├── product.js
+├── user
+│   ├── login.js
+│   ├── logout.js
+│   └── register.js
+└── utils.js
+
+2 directories, 7 files
+```
+
+---
+
+# DB Schema
+
+```sql {1-11|13-21|23-29|31-35|37-44|all}{maxHeight:'400px'}
+-- users
+CREATE TABLE `users` (
+	`id`	integer	NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	`user_id`	varchar(12)	UNIQUE NOT NULL,
+	`password`	varchar(255)	NOT NULL,
+	`name`	varchar(6)	NOT NULL,
+	`email`	varchar(255)	UNIQUE NULL,
+	`mobile_phone`	varchar(255)	UNIQUE NULL,
+	`address`	varchar(255) NULL,
+	`point`	INT UNSIGNED	NULL DEFAULT 200000
+);
+
+-- products
+CREATE TABLE `products` (
+	`id`	integer	NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	`name`	varchar(255)	NULL,
+	`price`	decimal(7,0)	NULL,
+	`stock`	integer	NULL	DEFAULT 99,
+	`image`	varchar(255)	NULL,
+	`category_id`	integer	NOT NULL
+);
+
+-- product foreign key
+ALTER TABLE `products` ADD CONSTRAINT `FK_categories_TO_products_1` FOREIGN KEY (
+	`category_id`
+)
+REFERENCES `categories` (
+	`id`
+);
+
+-- 카테고리
+CREATE TABLE `categories` (
+	`id`	integer	NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	`name`	varchar(255)	NULL
+);
+
+-- 세션 테이블
+CREATE TABLE IF NOT EXISTS `ci_sessions` (
+        `id` varchar(128) NOT NULL,
+        `ip_address` varchar(45) NOT NULL,
+        `timestamp` int(10) unsigned DEFAULT 0 NOT NULL,
+        `data` blob NOT NULL,
+        KEY `ci_sessions_timestamp` (`timestamp`)
+);
+```
+
+---
+
 # Router
 
 ```php {all}{maxHeight:'400px'}
@@ -287,11 +382,66 @@ $route['api/product/buy/(:num)'] = 'api/product_buy/$1';
 ```
 ---
 
+# BS_Controller
+
+```php {1|2|4-8|10-30|32-41|all}{maxHeight:'400px'}
+class BS_Controller extends CI_Controller {
+  public $pageTitle = 'Home';
+
+  public function __construct($_pageTitle) {
+    parent::__construct();
+    $this->pageTitle = $_pageTitle;
+    $this->load->model('user_model');
+  }
+
+  public function render($params = null) {
+    $user_info = null;
+    if ($this->session->userdata('user_id')) {
+      $user_info = $this->user_model->get_insensitive_info($this->session->userdata['user_id']);
+    }
+
+    // user 정보 session 에서 가져와서 header 에 로그인 정보 보여줌
+    $this->load->view(
+      'templates/header',
+      array('title' => $this->pageTitle, 'user_info' => $user_info)
+    );
+
+    // params 있으면 view 로드할 때 data binding.
+    if (!empty($params)) {
+      $this->load->view($this->pageTitle, $params);
+    } else {
+      $this->load->view($this->pageTitle);
+    }
+
+    $this->load->view('templates/footer');
+  }
+
+  // view controller 단에서 api 요청하기 위한 메서드 _request($url)
+  protected function _request($url) {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+    $response = curl_exec($ch);
+    curl_close($ch);
+    return $response;
+  }
+}
+```
+
+---
+
+<div style="display: flex; min-height: 50vh; justify-content: center; align-items: center;">
+  <h1>기능 시연</h1>
+</div>
+
+---
+
 # 2. 회원가입
 
 ### API: http://localhost/api/user/register POST
 
-### request
+### request body
 
 ```json {monaco}
 {
@@ -370,7 +520,7 @@ public function register_post() {
 
 ### API: http://localhost/api/user/check/duplicate POST
 
-### request
+### request body
 
 ```json {monaco}{maxHeight:'400px'}
 {
@@ -945,4 +1095,4 @@ public function products_search_get($page = 1) {
   <h1>감사합니다.</h1>
 </div>
 
-
+---
