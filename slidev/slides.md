@@ -234,6 +234,61 @@ static/css
 
 ---
 
+# header
+
+```html {all}{maxHeight:'400px'}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blue Shop - <?= $title ?></title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+```
+
+---
+
+# footer
+
+```html {all}{maxHeight:'400px'}
+  <script src="https://kit.fontawesome.com/bacab07d7b.js" crossorigin="anonymous"></script>
+  <script type="module" src="/static/js/constants.js"></script>
+  <script type="module" src="/static/js/utils.js"></script>
+  <script type="module" src="/static/js/user/logout.js"></script>
+  <?php
+  $path = explode('/', $_SERVER['REQUEST_URI'])[1]
+  ?>
+  <?php
+  if ($path === 'register') {
+  ?>
+  <script type="module" src="/static/js/user/register.js"></script>
+  <?php
+  }
+  ?>
+  <?php
+  if ($path === 'login') {
+  ?>
+  <script type="module" src="/static/js/user/login.js"></script>
+  <?php
+  }
+  ?>
+  <?php
+  if ($path === 'products') {
+  ?>
+  <script type="module" src="/static/js/pagination.js"></script>
+  <?php
+  }
+  ?>
+  <?php
+  if ($path === 'product') {
+  ?>
+  <script type="module" src="/static/js/product.js"></script>
+  <?php
+  }
+  ?>
+```
+
+---
+
 # 프로젝트 전체 폴더 구조
 
 controllers, views, models
